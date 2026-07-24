@@ -1,0 +1,39 @@
+#include<stdio.h>
+    int stack[5];
+    int top=-1;
+    void push(int number)
+    {
+        if(top==5-1)
+        printf("stack overflow\n");
+        else{            
+        top++;
+        stack[top]=number;}
+    }
+    void pop()
+    {
+        if(top==-1){
+        printf("stack underflow\n");}
+        else{  
+        printf("deleted element is : %d\n",stack[top]); 
+        top--;}
+    }
+    void display(){
+    for(int i=top;i>=0;i--)
+    {
+        printf("%d\n",stack[i]);
+    }
+    printf("\n");
+} 
+    
+
+    int main(){
+        push(10);
+        push(20);
+        push(40);
+        push(24);
+        push(23);
+        push(50);
+        display();
+        pop();
+        display();
+    }
