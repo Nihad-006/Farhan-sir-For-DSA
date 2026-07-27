@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+// সিলেকশন সর্ট ফাংশন - অ্যারেকে ছোট থেকে বড় ক্রমে সাজায়
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min_idx = i;  // ধরে নেওয়া হচ্ছে বর্তমান ইনডেক্সের উপাদানটিই সবচেয়ে ছোট
+
+        // অবশিষ্ট অ্যারের মধ্যে সবচেয়ে ছোট উপাদানের ইনডেক্স খুঁজে বের করা হচ্ছে
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min_idx]) {
+                min_idx = j;  // নতুন ছোট উপাদান পাওয়া গেলে ইনডেক্স আপডেট করা হচ্ছে
+            }
+        }
+
+        // পাওয়া সবচেয়ে ছোট উপাদানটিকে প্রথম উপাদানের সাথে অদল-বদল করা হচ্ছে
+        if (min_idx != i) {
+            int temp = arr[min_idx];
+            arr[min_idx] = arr[i];
+            arr[i] = temp;
+        }
+    }
+}
+
+// অ্যারের উপাদানগুলো প্রিন্ট করার ফাংশন
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int n = sizeof(arr) / sizeof(arr[0]);  // অ্যারের মোট উপাদান সংখ্যা বের করা হচ্ছে
+
+    printf("সর্ট করার আগে: ");
+    printArray(arr, n);
+
+    selectionSort(arr, n);  // সিলেকশন সর্ট ফাংশন কল করা হলো
+
+    printf("সর্ট করার পরে: ");
+    printArray(arr, n);
+
+    return 0;
+}
