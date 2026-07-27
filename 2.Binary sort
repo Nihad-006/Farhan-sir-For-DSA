@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+// বাইনারি সার্চ ফাংশন - সর্টেড অ্যারেতে একটি টার্গেট মান খুঁজে বের করে
+int binarySearch(int arr[], int left, int right, int target) {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;  // মাঝের ইনডেক্স বের করা হচ্ছে
+
+        // যদি মাঝের উপাদানই টার্গেট হয়
+        if (arr[mid] == target) {
+            return mid;  // টার্গেটের ইনডেক্স রিটার্ন করা হলো
+        }
+
+        // যদি টার্গেট মাঝের উপাদান থেকে বড় হয়, তাহলে ডান অংশে খোঁজা হবে
+        if (arr[mid] < target) {
+            left = mid + 1;
+        }
+        // যদি টার্গেট মাঝের উপাদান থেকে ছোট হয়, তাহলে বাম অংশে খোঁজা হবে
+        else {
+            right = mid - 1;
+        }
+    }
+
+    return -1;  // টার্গেট না পাওয়া গেলে -1 রিটার্ন করা হলো
+}
+
+int main() {
+    int arr[] = {5, 6, 11, 12, 13, 20, 35, 50};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int target = 12;
+
+    int result = binarySearch(arr, 0, n - 1, target);
+
+    if (result != -1) {
+        printf("উপাদানটি %d নং ইনডেক্সে পাওয়া গেছে\n", result);
+    } else {
+        printf("উপাদানটি অ্যারেতে নেই\n");
+    }
+
+    return 0;
+}
