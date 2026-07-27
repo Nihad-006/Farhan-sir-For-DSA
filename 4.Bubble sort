@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+// বাবল সর্ট ফাংশন - অ্যারেকে ছোট থেকে বড় ক্রমে সাজায়
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {          // বাহিরের লুপ - মোট কতবার পাস চালানো হবে
+        for (int j = 0; j < n - i - 1; j++) {  // ভেতরের লুপ - পাশাপাশি উপাদান তুলনা করার জন্য
+            if (arr[j] > arr[j + 1]) {         // যদি আগের উপাদানটি পরের উপাদান থেকে বড় হয়
+                // তাহলে দুটি উপাদান অদল-বদল (swap) করা হচ্ছে
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// অ্যারের উপাদানগুলো প্রিন্ট করার ফাংশন
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);  // অ্যারের মোট উপাদান সংখ্যা বের করা হচ্ছে
+
+    printf("সর্ট করার আগে: ");
+    printArray(arr, n);
+
+    bubbleSort(arr, n);  // বাবল সর্ট ফাংশন কল করা হলো
+
+    printf("সর্ট করার পরে: ");
+    printArray(arr, n);
+
+    return 0;
+}
